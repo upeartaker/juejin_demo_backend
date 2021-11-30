@@ -1,9 +1,24 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-
+import { CatModule } from './cat/cat.module';
+// 引入数据库的及配置文件
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CatEntity } from './cat/cat.entity';
 @Module({
-  imports: [],
+  imports: [
+    CatModule,
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'z6609930',
+      database: 'test',
+      entities: [CatEntity],
+      synchronize: true,
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
