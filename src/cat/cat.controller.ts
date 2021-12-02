@@ -4,15 +4,15 @@ import { CatService } from './cat.service';
 
 @Controller('cat')
 export class CatController {
-  constructor(private readonly catService: CatService) {}
+  constructor(private readonly catService: CatService) { }
 
   @Get('allUser')
   findAll(): Promise<CatEntity[]> {
     return this.catService.findAll();
   }
-  @Get('11')
+  @Get('1')
   findOne(): Promise<CatEntity> {
-    return this.catService.findOne('11');
+    return this.catService.findOne('1');
   }
 
   @Get('test')

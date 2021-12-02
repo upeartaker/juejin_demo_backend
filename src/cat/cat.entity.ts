@@ -6,14 +6,14 @@ export class CatEntity {
   @PrimaryGeneratedColumn({ comment: '主键id' })
   id: number;
 
-  @Column({ length: 100, comment: 'uuid', generated: 'uuid' })
-  uuid: string;
+  @Column({ length: 50, comment: '用户名', generated: 'uuid', unique: true  })
+  userName: string;
 
-  @Column({ length: 50, comment: '名字', unique: true })
-  name: string;
+  @Column({ length: 50, comment: '密码', })
+  passWord: string;
 
-  @Column({ comment: '年龄' })
-  age: number;
+  @Column({ comment: '文章' })
+  article: number;
 
   @Column({
     type: 'varchar',
