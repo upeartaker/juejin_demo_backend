@@ -6,23 +6,14 @@ export class CatEntity {
   @PrimaryGeneratedColumn({ comment: '主键id' })
   id: number;
 
-  @Column({ length: 50, comment: '用户名', generated: 'uuid', unique: true  })
+  @Column({ length: 50, comment: '用户名', generated: 'uuid', unique: true })
   userName: string;
 
-  @Column({ length: 50, comment: '密码', })
+  @Column({ length: 50, comment: '密码' })
   passWord: string;
 
   @Column({ comment: '文章' })
-  article: number;
-
-  @Column({
-    type: 'varchar',
-    length: 30,
-    comment: '颜色',
-    nullable: true,
-    // default: null,
-  })
-  color: string;
+  article: '';
 
   @Column({ type: 'timestamp', default: () => 'current_timestamp' })
   createAt: Timestamp;

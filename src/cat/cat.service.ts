@@ -14,20 +14,19 @@ export class CatService {
     return this.catRepository.find({ id: 11 });
   }
 
-  findOne(id: string): Promise<CatEntity> {
-    return this.catRepository.findOne(id);
+  findOne(key: string): Promise<CatEntity> {
+    return this.catRepository.findOne({ userName: key });
   }
 
   async remove(id: string): Promise<void> {
     await this.catRepository.delete(id);
   }
 
-  async addOne(): Promise<void> {
-    console.log('1');
+  async addOne(CatEntity: CatEntity): Promise<void> {
     const e = await this.catRepository.create({
-      name: 'zhangyu1',
-      color: 'green',
-      age: 18,
+      userName: CatEntity.userName,
+      passWord: CatEntity.passWord,
+      article: CatEntity.article,
     });
     this.catRepository.save(e);
   }
