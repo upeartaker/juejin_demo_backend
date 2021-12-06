@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { get } from 'http';
+// import { get } from 'http';
 import { CatEntity } from './cat.entity';
 import { CatService } from './cat.service';
 
@@ -16,6 +16,7 @@ export class CatController {
   // 登录接口
   @Post('login')
   async logIn(@Body() userdto): Promise<string> {
+    // console.log('1111');
     const mysqlInfo = await this.catService.findOne(userdto.userNameStr);
     if (mysqlInfo) {
       if (mysqlInfo.passWord === userdto.passwordStr) {
