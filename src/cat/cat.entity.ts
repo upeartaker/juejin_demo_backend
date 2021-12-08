@@ -10,18 +10,18 @@ export class CatEntity {
   userName: string;
 
   @Column({ length: 50, comment: '密码' })
-  passWord: string;
+  passWord?: string;
 
   @Column({ comment: '文章' })
-  article: '';
+  article?: '';
 
   @Column({ type: 'timestamp', default: () => 'current_timestamp' })
-  createAt: Timestamp;
+  createAt?: Timestamp;
 
   @Column({
     type: 'timestamp',
     onUpdate: 'current_timestamp',
     default: () => 'current_timestamp',
   })
-  updateAt: Timestamp;
+  updateAt?: Timestamp;
 }

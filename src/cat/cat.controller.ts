@@ -1,30 +1,18 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, UseGuards } from '@nestjs/common';
 // import { get } from 'http';
 import { CatEntity } from './cat.entity';
 import { CatService } from './cat.service';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('cat')
 export class CatController {
   constructor(private readonly catService: CatService) {}
 
+  @UseGuards(AuthGuard('jwt'))
   // 获取所有用户信息
   @Get('alluser')
-  findAll(): Promise<CatEntity[]> {
+  async findAll(): Promise<CatEntity[]> {
     return this.catService.findAll();
-  }
-
-  // 登录接口
-  @Post('login')
-  async logIn(@Body() userdto): Promise<string> {
-    // console.log('1111');
-    const mysqlInfo = await this.catService.findOne(userdto.userNameStr);
-    if (mysqlInfo) {
-      if (mysqlInfo.passWord === userdto.passwordStr) {
-        return '登陆成功';
-      }
-    } else {
-      return '用户名或密码不正确';
-    }
   }
 
   //注册用户

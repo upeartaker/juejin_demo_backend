@@ -10,7 +10,7 @@ export class CatService {
   ) {}
 
   findAll(): Promise<CatEntity[]> {
-    return this.catRepository.find({ id: 11 });
+    return this.catRepository.find();
   }
 
   findOne(key: string): Promise<CatEntity> {

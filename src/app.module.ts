@@ -7,6 +7,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CatEntity } from './cat/cat.entity';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
+import { jwtContants } from './auth/jwt.contants';
+import { JwtModule } from '@nestjs/jwt';
+
 @Module({
   imports: [
     CatModule,
@@ -22,6 +25,9 @@ import { AuthService } from './auth/auth.service';
       logging: true,
     }),
     AuthModule,
+    JwtModule.register({
+      secret: jwtContants.secret,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService, AuthService],
