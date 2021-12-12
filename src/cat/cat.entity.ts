@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, Timestamp } from 'typeorm';
+import { ArticleClass } from './cat.article';
 
 @Entity()
 export class CatEntity {
@@ -12,8 +13,8 @@ export class CatEntity {
   @Column({ length: 50, comment: '密码' })
   passWord?: string;
 
-  @Column({ comment: '文章' })
-  article?: '';
+  @Column({ comment: '文章', default: null })
+  article?: string;
 
   @Column({ type: 'timestamp', default: () => 'current_timestamp' })
   createAt?: Timestamp;

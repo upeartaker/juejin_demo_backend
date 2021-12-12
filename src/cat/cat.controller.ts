@@ -1,8 +1,9 @@
-import { Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, UseGuards, Body } from '@nestjs/common';
 // import { get } from 'http';
 import { CatEntity } from './cat.entity';
 import { CatService } from './cat.service';
 import { AuthGuard } from '@nestjs/passport';
+import { CreateCatDto } from './create-cat-dto';
 
 @Controller('cat')
 export class CatController {
@@ -15,7 +16,7 @@ export class CatController {
     return this.catService.findAll();
   }
 
-  //注册用户
+  // 注册用户
   @Post('addone')
   async addOne(logInInfo: CatEntity): Promise<string> {
     const name = await this.catService.findOne(logInInfo.userName);
@@ -25,5 +26,15 @@ export class CatController {
       await this.catService.addOne(logInInfo);
       return '注册成功';
     }
+  }
+  // 用户添加文章
+  @UseGuards(AuthGuard('jwt'))
+  @Post('addarticle')
+  async addArticle(@Body() createCatDto: CreateCatDto): Promise<boolean> {
+    console.log(createCatDto.username, createCatDto.artiInfo);
+    return this.catService.addArticle(
+      createCatDto.username,
+      createCatDto.artiInfo,
+    );
   }
 }

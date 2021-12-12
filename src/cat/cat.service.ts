@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CatEntity } from './cat.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ArticleClass } from './cat.article';
 @Injectable()
 export class CatService {
   constructor(
@@ -29,4 +30,31 @@ export class CatService {
     });
     this.catRepository.save(e);
   }
+
+  async addArticle(useName: string, article: string): Promise<boolean> {
+    const one = await this.catRepository.findOne({ userName: useName });
+
+    one.article = article;
+
+    if (this.catRepository.save(one)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // async delArticle(useName: string, artiName: string): Promise<boolean> {
+  //   const one = await this.catRepository.findOne({ userName: useName });
+
+  //   const artArray = (await one).article;
+  //   const len = artArray.length;
+  //   for (let i = 0; i < len; i++) {
+  //     if (artArray[i].article === artiName) {
+  //       artArray.splice(i, 1);
+  //       this.catRepository.save(one);
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }
 }
