@@ -10,10 +10,10 @@ export class CatArtiEntity {
   userName: string;
 
   @Column({ length: 50, comment: '文章名称' })
-  articleName?: string;
+  articleName: string;
 
   @Column({ comment: '文章内容' })
-  content?: string;
+  content: string;
 
   @Column({ type: 'timestamp', default: () => 'current_timestamp' })
   createAt?: Timestamp;

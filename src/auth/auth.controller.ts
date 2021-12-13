@@ -8,7 +8,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {
     this.authService = authService;
   }
-
+  //用户登录
   @UseGuards(AuthGuard('local'))
   @Post('login')
   async login(@Request() request): Promise<TokenEntity> {

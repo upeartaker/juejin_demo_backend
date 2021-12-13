@@ -6,7 +6,7 @@ import { CatService } from './cat.service';
 import { CatArtiEntity } from './catarticle.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CatEntity,CatArtiEntity])],
+  imports: [TypeOrmModule.forFeature([CatEntity, CatArtiEntity])],
   controllers: [CatController],
   providers: [CatService],
   exports: [CatService],

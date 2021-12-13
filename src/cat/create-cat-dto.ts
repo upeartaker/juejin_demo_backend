@@ -1,4 +1,5 @@
 export class CreateCatDto {
   readonly username: string;
-  readonly artiInfo: string;
+  readonly content: string;
+  readonly articlename: string;
 }
