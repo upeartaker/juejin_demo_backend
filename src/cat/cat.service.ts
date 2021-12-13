@@ -2,12 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CatEntity } from './cat.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ArticleClass } from './cat.article';
+import { CatArtiEntity } from './catarticle.entity';
 @Injectable()
 export class CatService {
   constructor(
     @InjectRepository(CatEntity)
     private readonly catRepository: Repository<CatEntity>,
+    // private readonly catArticle: Repository<CatArtiEntity>,
   ) {}
 
   findAll(): Promise<CatEntity[]> {
@@ -26,15 +27,12 @@ export class CatService {
     const e = await this.catRepository.create({
       userName: CatEntity.userName,
       passWord: CatEntity.passWord,
-      article: CatEntity.article,
     });
     this.catRepository.save(e);
   }
 
   async addArticle(useName: string, article: string): Promise<boolean> {
     const one = await this.catRepository.findOne({ userName: useName });
-
-    one.article = article;
 
     if (this.catRepository.save(one)) {
       return true;
