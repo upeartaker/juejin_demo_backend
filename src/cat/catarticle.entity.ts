@@ -6,7 +6,7 @@ export class CatArtiEntity {
   @PrimaryGeneratedColumn({ comment: '主键id' })
   id: number;
 
-  @Column({ length: 50, comment: '用户名', generated: 'uuid', unique: true })
+  @Column({ length: 50, comment: '用户名', generated: 'uuid' })
   userName: string;
 
   @Column({ length: 50, comment: '文章名称' })

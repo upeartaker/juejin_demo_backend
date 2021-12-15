@@ -25,11 +25,7 @@ export class CatController {
   @Post('addarticle')
   async addArticle(@Body() createCatDto: CreateCatDto): Promise<boolean> {
     const articleClass = new CatArtiEntity();
-    console.log(
-      createCatDto.username,
-      createCatDto.content,
-      createCatDto.articlename,
-    );
+
     articleClass.userName = createCatDto.username;
     articleClass.content = createCatDto.content;
     articleClass.articleName = createCatDto.articlename;
