@@ -13,16 +13,16 @@ export class AuthService {
 
   async validateCat(username: string, pass: string): Promise<CatEntity> {
     const user = await this.catService.findOne(username);
-    console.log('2222');
     if (user && user.passWord === pass) {
+      console.log('login success username:%s', username);
       return user;
     }
+    console.log('login false');
     return null;
   }
 
   async login(cat: CatEntity): Promise<TokenEntity> {
     const { id, userName } = cat;
-    console.log('1111');
     return {
       token: this.jwtService.sign({ userName, sub: id }),
     };

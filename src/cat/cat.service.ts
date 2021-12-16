@@ -21,6 +21,8 @@ export class CatService {
    *@Description: 查找一篇文章
    */
   findAnArticle(username: string, artiName: string): Promise<CatArtiEntity> {
+    console.log('get articlename:%s', artiName);
+    console.log('get username:%s', username);
     return this.catArticle.findOne({
       userName: username,
       articleName: artiName,
