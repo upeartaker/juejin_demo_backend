@@ -11,12 +11,15 @@ export class CatController {
   constructor(private readonly catService: CatService) {}
   // 注册用户
   @Post('addone')
-  async addOne(logInInfo: CatEntity): Promise<string> {
-    const name = await this.catService.findOne(logInInfo.userName);
+  async addOne(@Body() createCatDto: CreateCatDto): Promise<string> {
+    const name = await this.catService.findOne(createCatDto.registerstr);
     if (name) {
       return '用户名已注册';
     } else {
-      await this.catService.addOne(logInInfo);
+      const one = new CatEntity();
+      one.userName = createCatDto.registerstr;
+      one.passWord = createCatDto.registerpsd;
+      this.catService.addOne(one);
       return '注册成功';
     }
   }
