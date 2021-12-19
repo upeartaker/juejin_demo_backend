@@ -20,13 +20,10 @@ export class CatService {
    *@return:
    *@Description: 查找一篇文章
    */
-  findAnArticle(username: string, artiName: string): Promise<CatArtiEntity> {
-    console.log('get articlename:%s', artiName);
+  findAnArticle(username: string): Promise<CatArtiEntity[]> {
     console.log('get username:%s', username);
-    return this.catArticle.findOne({
-      userName: username,
-      articleName: artiName,
-    });
+    const one = this.catArticle.find({ where: { userName: username } });
+    return one;
   }
   /*
    *@functionName:

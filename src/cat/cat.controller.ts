@@ -23,17 +23,16 @@ export class CatController {
       return '注册成功';
     }
   }
-  // 用户获取一篇文章
+  // 用户获取文章列表
   @UseGuards(AuthGuard('jwt'))
   @Post('getarticle')
-  async getArticle(@Body() createCatDto: CreateCatDto): Promise<string> {
+  async getArticle(
+    @Body() createCatDto: CreateCatDto,
+  ): Promise<CatArtiEntity[]> {
     console.log(createCatDto);
-    const one = await this.catService.findAnArticle(
-      createCatDto.username,
-      createCatDto.articlename,
-    );
-
-    return one.content;
+    const one = await this.catService.findAnArticle(createCatDto.username);
+    console.log(one);
+    return one;
   }
   // 用户添加文章
   @UseGuards(AuthGuard('jwt'))

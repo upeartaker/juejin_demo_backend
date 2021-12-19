@@ -4,16 +4,16 @@ import { Entity, PrimaryGeneratedColumn, Column, Timestamp } from 'typeorm';
 export class CatArtiEntity {
   // 会以类名来创建表,如果是驼峰命名的,生成的表名是下划线区分
   @PrimaryGeneratedColumn({ comment: '主键id' })
-  id: number;
+  id?: number;
 
   @Column({ length: 50, comment: '用户名', generated: 'uuid' })
-  userName: string;
+  userName?: string;
 
   @Column({ length: 50, comment: '文章名称' })
-  articleName: string;
+  articleName?: string;
 
   @Column({ comment: '文章内容' })
-  content: string;
+  content?: string;
 
   @Column({ type: 'timestamp', default: () => 'current_timestamp' })
   createAt?: Timestamp;
